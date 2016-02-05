@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, abort, make_response, request
 import Pessoa
+import json
 
 
 app = Flask(__name__)
@@ -11,14 +12,13 @@ _pessoa.nome = 'Welker Arantes'
 _pessoa.idade = 23
 _pessoa.telefone = '(64) 9296 4354'
 
-Json = [
-    {'id' : 1, 'nome' : _pessoa.nome, 'idade' : _pessoa.idade, 'telefone' : _pessoa.telefone}
-]
+
+Json = json.dumps(_pessoa.__dict__)
 
 
 @app.route('/service/api/all', methods=['GET'])
 def retrieve_all():
-    return jsonify({'pessoas': Json})
+    return Json
 
 
 @app.route('/service/api/<int:id>', methods=['GET'])

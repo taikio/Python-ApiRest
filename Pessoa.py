@@ -1,5 +1,5 @@
 
-class Pessoa():
+class Pessoa(object):
     def __init__(self):
         self.id = None
         self.nome = ''
